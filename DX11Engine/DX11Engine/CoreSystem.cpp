@@ -45,14 +45,14 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	bool result;
 
 	// Create the Direct3D object.
-	_Camera = new Camera;
+	_Camera = new Camera(&IsKeyPressedDelegate, &GetMouseStateDelegate);
 	if (!_Camera)
 	{
 		return false;
 	}
 
 	// Set the initial position of the camera.
-	_Camera->SetPosition(0.0f, 0.0f, -10.0f);	// for cube model
+	_Camera->SetPosition(0.0f, 0.0f, -7.0f);	// for cube model
 
 	// Create the Direct3D object.
 	_RenderingSystem = new RenderingSystem(_Camera, &_gameObjects);
@@ -84,7 +84,7 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 	// 오브젝트가 추가되는 로직은 여기서 진행하자
 	GameObject* go = new GameObject(&IsKeyPressedDelegate);
-	go->AddComponent(new ModelRenderer("./data/cube.fbx"));
+	go->AddComponent(new TextureModelRenderer("./data/chair.obj", "./data/chair.dds"));
 	AddGameObject(go);
 
 	return true;
@@ -126,6 +126,8 @@ bool CoreSystem::Frame()
 	{
 		return false;
 	}
+
+	_Camera->Frame();
 
 	return true;
 }

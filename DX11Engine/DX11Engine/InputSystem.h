@@ -37,6 +37,8 @@ public:
 	void Shutdown();
 	bool Frame();
 
+	DIMOUSESTATE GetMouseState();
+
 	void GetMouseLocation(int& mouseX, int& mouseY);
 	bool IsKeyPressed(int keyNumber);
 
@@ -50,7 +52,6 @@ private:
 	IDirectInputDevice8* _mouse;
 
 	DIMOUSESTATE _mouseState;
-	DIMOUSESTATE _mouseLastState;
 	int _mouseX, _mouseY;
 
 	unsigned char m_keyboardState[256];

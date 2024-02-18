@@ -1,12 +1,13 @@
 #include "GameObject.h"
 #include "InputSystem.h"
 
-GameObject::GameObject(Delegate<InputSystem>* delegate)
+GameObject::GameObject(Delegate<bool, InputSystem, int>* delegate)
 {
 	_isActive = true;
 	_renderer = nullptr;
 
 	IsKeyPressed = delegate;
+	_rotationValue = 0;
 
 	AddComponent(new Transform());
 }
@@ -32,6 +33,18 @@ void GameObject::Start()
 void GameObject::Update()
 {
 	if (_isActive == false) return;
+
+	if (IsKeyPressed->Invoke(DIK_1))
+	{
+		_rotationValue += 0.3f;
+		_transform->SetRotation(0, _rotationValue, 0);
+	}
+
+	if (IsKeyPressed->Invoke(DIK_2))
+	{
+		_rotationValue += 0.3f;
+		_transform->SetRotation(0, _rotationValue, _rotationValue);
+	}
 }
 
 void GameObject::OnDestroy()

@@ -15,7 +15,10 @@
 ///////////////////////
 #include "GameObject.h"
 #include "Routine.h"
-#include "Renderer.h"
+
+#include "ModelRenderer.h"
+#include "TextureModelRenderer.h"
+
 #include "InputSystem.h"
 #include "LogicSystem.h"
 #include "RenderingSystem.h"
@@ -36,7 +39,8 @@ public:
 	void Shutdown();
 	bool Frame();
 
-    Delegate<InputSystem> IsKeyPressedDelegate;
+	Delegate<bool, InputSystem, int> IsKeyPressedDelegate;
+	Delegate<DIMOUSESTATE, InputSystem> GetMouseStateDelegate;
 
 private:
 	list<GameObject*> _gameObjects;

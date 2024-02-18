@@ -57,6 +57,21 @@ bool RenderingSystem::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Create the texture shader object.
+	_TextureShader = new TextureShader;
+	if (!_TextureShader)
+	{
+		return false;
+	}
+
+	// Initialize the texture shader object.
+	result = _TextureShader->Initialize(_D3dModule->GetDevice(), hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the texture shader object.", L"Error", MB_OK);
+		return false;
+	}
+
 	return true;
 }
 
@@ -82,6 +97,14 @@ void RenderingSystem::Shutdown()
 		_ColorShader->Shutdown();
 		delete _ColorShader;
 		_ColorShader = 0;
+	}
+
+	// Release the texture shader object.
+	if (_TextureShader)
+	{
+		_TextureShader->Shutdown();
+		delete _TextureShader;
+		_TextureShader = 0;
 	}
 
 	return;
@@ -143,12 +166,27 @@ bool RenderingSystem::Render()
 		// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
 		renderer->Render(_D3dModule->GetDeviceContext());
 
-		// Render the model using the texture shader.
-		result = _ColorShader->Render(_D3dModule->GetDeviceContext(), renderer->GetIndexCount(),
-			localMatrix, viewMatrix, projectionMatrix);
-		if (!result)
+		int num = renderer->GetShaderNumber();
+
+		if (num == 0)
 		{
-			return false;
+			// Render the model using the texture shader.
+			result = _ColorShader->Render(_D3dModule->GetDeviceContext(), renderer->GetIndexCount(),
+				localMatrix, viewMatrix, projectionMatrix);
+			if (!result)
+			{
+				return false;
+			}
+		}
+		else if (num == 1)
+		{
+			// Render the model using the texture shader.
+			result = _TextureShader->Render(_D3dModule->GetDeviceContext(), renderer->GetIndexCount(),
+				localMatrix, viewMatrix, projectionMatrix, renderer->GetTexture());
+			if (!result)
+			{
+				return false;
+			}
 		}
 	}
 

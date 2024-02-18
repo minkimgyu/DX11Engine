@@ -63,6 +63,7 @@ bool DXEngine::Initialize()
 	}
 
 	_CoreSystem->IsKeyPressedDelegate.Connect(_Input, &InputSystem::IsKeyPressed);
+	_CoreSystem->GetMouseStateDelegate.Connect(_Input, &InputSystem::GetMouseState);
 
 	return true;
 }

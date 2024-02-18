@@ -5,6 +5,9 @@
 
 InputSystem::InputSystem()
 {
+	_directInput = 0;
+	_keyboard = 0;
+	_mouse = 0;
 }
 
 InputSystem::InputSystem(const InputSystem& other)
@@ -124,6 +127,11 @@ bool InputSystem::Frame()
 	return true;
 }
 
+DIMOUSESTATE InputSystem::GetMouseState()
+{
+	return _mouseState;
+}
+
 bool InputSystem::Initialize(HINSTANCE hinstance, HWND hwnd)
 {
 	HRESULT result;
@@ -153,6 +161,7 @@ bool InputSystem::Initialize(HINSTANCE hinstance, HWND hwnd)
 		return false;
 	}
 
+	// DISCL_BACKGROUND | DISCL_FOREGROUND
 	// Set the cooperative level of the keyboard to not share with other programs.
 	result = _keyboard->SetCooperativeLevel(hwnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 	if (FAILED(result))

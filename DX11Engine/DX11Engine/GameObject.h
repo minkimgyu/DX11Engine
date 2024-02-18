@@ -27,7 +27,7 @@ using namespace std;
 class GameObject
 {
 public:
-	GameObject(Delegate<InputSystem>*);
+	GameObject(Delegate<bool, InputSystem, int>*);
 	GameObject(const GameObject&);
 	~GameObject();
 
@@ -72,7 +72,8 @@ private:
 	Transform* _transform;
 	vector<Component*> _components; // 삽입 삭제가 많지 않으므로 vector 사용
 
-	Delegate<InputSystem>* IsKeyPressed;
+	Delegate<bool, InputSystem, int>* IsKeyPressed;
+	float _rotationValue;
 };
 
 #endif

@@ -13,10 +13,24 @@
 class Renderer : public Component
 {
 public:
+	Renderer();
+	~Renderer();
+
+public:
 	virtual bool Initialize(ID3D11Device*) = 0;
+	virtual bool Initialize(ID3D11Device*, const WCHAR*, const WCHAR*);
 	virtual void Render(ID3D11DeviceContext*) = 0;
 	virtual int GetIndexCount() = 0;
 	virtual void Shutdown() = 0;
+
+	virtual ID3D11ShaderResourceView* GetTexture();
+
+	int GetShaderNumber();
+	void SetShaderNumber(int);
+
+protected:
+	int _shaderNumber;
+
 };
 
 #endif
