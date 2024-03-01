@@ -150,6 +150,10 @@
     <None Include="data\cube.fbx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </None>
+    <None Include="data\multitexture.ps" />
+    <None Include="data\multitexture.vs" />
+    <None Include="data\texture.ps" />
+    <None Include="data\texture.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlignedAllocationPolicy.h" />
@@ -163,12 +167,15 @@
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LogicSystem.h" />
+    <ClInclude Include="MultiTextureModelRenderer.h" />
+    <ClInclude Include="MultiTextureShader.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="ModelRenderer.h" />
     <ClInclude Include="DXEngine.h" />
     <ClInclude Include="Routine.h" />
+    <ClInclude Include="TextureArrayContainer.h" />
     <ClInclude Include="TextureContainer.h" />
     <ClInclude Include="TextureModelRenderer.h" />
     <ClInclude Include="TextureShader.h" />
@@ -184,16 +191,26 @@
     <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="LogicSystem.cpp" />
+    <ClCompile Include="MultiTextureModelRenderer.cpp" />
+    <ClCompile Include="MultiTextureShader.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="ModelRenderer.cpp" />
     <ClCompile Include="DXEngine.cpp" />
     <ClCompile Include="Routine.cpp" />
+    <ClCompile Include="TextureArrayContainer.cpp" />
     <ClCompile Include="TextureContainer.cpp" />
     <ClCompile Include="TextureModelRenderer.cpp" />
     <ClCompile Include="TextureShader.cpp" />
     <ClCompile Include="Transform.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\chair.dds" />
+    <Image Include="data\dirt.dds" />
+    <Image Include="data\stone.dds" />
+    <Image Include="data\tank_Col.dds" />
+    <Image Include="data\tank_Tracks.dds" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

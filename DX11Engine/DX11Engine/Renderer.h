@@ -10,6 +10,10 @@
 #include "D3dModule.h"
 #include "Component.h"
 
+#include<vector>
+
+using namespace std;
+
 class Renderer : public Component
 {
 public:
@@ -24,11 +28,12 @@ public:
 	virtual void Shutdown() = 0;
 
 	virtual ID3D11ShaderResourceView* GetTexture();
+	virtual ID3D11ShaderResourceView** GetTextureArray();
 
 	int GetShaderNumber();
 	void SetShaderNumber(int);
 
-protected:
+private:
 	int _shaderNumber;
 
 };

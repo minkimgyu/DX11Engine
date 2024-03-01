@@ -84,7 +84,9 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 	// 오브젝트가 추가되는 로직은 여기서 진행하자
 	GameObject* go = new GameObject(&IsKeyPressedDelegate);
-	go->AddComponent(new TextureModelRenderer("./data/chair.obj", "./data/chair.dds"));
+	go->AddComponent(new MultiTextureModelRenderer("./data/tank.fbx", { "./data/tank_Col.dds" , "./data/tank_Tracks.dds" }));
+		
+	//go->AddComponent(new TextureModelRenderer("./data/chair.obj", { "./data/chair.dds" }));
 	AddGameObject(go);
 
 	return true;

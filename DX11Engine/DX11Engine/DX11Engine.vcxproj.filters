@@ -53,6 +53,18 @@
     <None Include="data\cube.fbx">
       <Filter>리소스 파일</Filter>
     </None>
+    <None Include="data\multitexture.ps">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="data\multitexture.vs">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="data\texture.vs">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="data\texture.ps">
+      <Filter>리소스 파일</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlignedAllocationPolicy.h">
@@ -118,6 +130,15 @@
     <ClInclude Include="TextureContainer.h">
       <Filter>헤더 파일\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="MultiTextureModelRenderer.h">
+      <Filter>헤더 파일\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiTextureShader.h">
+      <Filter>헤더 파일\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureArrayContainer.h">
+      <Filter>헤더 파일\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -177,5 +198,31 @@
     <ClCompile Include="DDSTextureLoader.cpp">
       <Filter>소스 파일\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="MultiTextureModelRenderer.cpp">
+      <Filter>소스 파일\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTextureShader.cpp">
+      <Filter>소스 파일\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureArrayContainer.cpp">
+      <Filter>소스 파일\Texture</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\chair.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="data\dirt.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="data\stone.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="data\tank_Col.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="data\tank_Tracks.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@
 #include "GameObject.h"
 #include "ColorShader.h"
 #include "TextureShader.h"
+#include "MultiTextureShader.h"
 #include "ModelRenderer.h"
 
 
@@ -56,6 +57,7 @@ private:
 	Camera* _CameraFromSystem;
 	ColorShader* _ColorShader;
 	TextureShader* _TextureShader;
+	MultiTextureShader* _MultiTextureShader;
 };
 
 #endif

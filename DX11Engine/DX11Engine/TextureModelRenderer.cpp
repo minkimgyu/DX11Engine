@@ -11,7 +11,7 @@ TextureModelRenderer::TextureModelRenderer(string modelPath, string texturePath)
 
 	_faceCount = 0;
 	
-	_shaderNumber = 1;
+	SetShaderNumber(1);
 
 	_modelPath = modelPath;
 	_texturePath = texturePath;

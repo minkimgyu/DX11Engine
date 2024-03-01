@@ -5,6 +5,11 @@ ID3D11ShaderResourceView* Renderer::GetTexture()
 	return nullptr;
 }
 
+ID3D11ShaderResourceView** Renderer::GetTextureArray()
+{
+	return nullptr;
+}
+
 int Renderer::GetShaderNumber()
 {
 	return _shaderNumber;

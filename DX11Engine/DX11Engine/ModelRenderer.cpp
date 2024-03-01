@@ -14,7 +14,7 @@ ModelRenderer::ModelRenderer(string path)
 	_indexCount = 0;
 	_faceCount = 0;
 
-	_shaderNumber = 0;
+	SetShaderNumber(0);
 
 	_modelPath = path;
 

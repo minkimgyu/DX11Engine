@@ -18,6 +18,7 @@
 
 #include "ModelRenderer.h"
 #include "TextureModelRenderer.h"
+#include "MultiTextureModelRenderer.h"
 
 #include "InputSystem.h"
 #include "LogicSystem.h"

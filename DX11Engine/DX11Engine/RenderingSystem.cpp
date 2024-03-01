@@ -8,6 +8,8 @@ RenderingSystem::RenderingSystem(Camera* camera, list<GameObject*>* objects)
 {
 	_D3dModule = 0;
 	_ColorShader = 0;
+	_TextureShader = 0;
+	_MultiTextureShader = 0;
 
 	_CameraFromSystem = camera;
 	_gameObjectsFromCore = objects;
@@ -72,6 +74,21 @@ bool RenderingSystem::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Create the texture shader object.
+	_MultiTextureShader = new MultiTextureShader;
+	if (!_MultiTextureShader)
+	{
+		return false;
+	}
+
+	// Initialize the texture shader object.
+	result = _MultiTextureShader->Initialize(_D3dModule->GetDevice(), hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the texture shader object.", L"Error", MB_OK);
+		return false;
+	}
+
 	return true;
 }
 
@@ -105,6 +122,14 @@ void RenderingSystem::Shutdown()
 		_TextureShader->Shutdown();
 		delete _TextureShader;
 		_TextureShader = 0;
+	}
+
+	// Release the texture shader object.
+	if (_MultiTextureShader)
+	{
+		_MultiTextureShader->Shutdown();
+		delete _MultiTextureShader;
+		_MultiTextureShader = 0;
 	}
 
 	return;
@@ -183,6 +208,16 @@ bool RenderingSystem::Render()
 			// Render the model using the texture shader.
 			result = _TextureShader->Render(_D3dModule->GetDeviceContext(), renderer->GetIndexCount(),
 				localMatrix, viewMatrix, projectionMatrix, renderer->GetTexture());
+			if (!result)
+			{
+				return false;
+			}
+		}
+		else if (num == 2)
+		{
+			// Render the model using the texture shader.
+			result = _MultiTextureShader->Render(_D3dModule->GetDeviceContext(), renderer->GetIndexCount(),
+				localMatrix, viewMatrix, projectionMatrix, renderer->GetTextureArray());
 			if (!result)
 			{
 				return false;
